@@ -1,4 +1,4 @@
-import { Col, Modal, Row, Select } from 'antd';
+import { Col, Modal, Row, Select, Spin } from 'antd';
 import capitalize from 'lodash/capitalize';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
@@ -60,9 +60,15 @@ const ImageUploadModal = ({ visible, handleAfterSave, handleCancel }) => {
   };
 
   const uploadPhotos = (payload) => {
+    updateUploadStateObject({
+      uploading: true,
+    });
     const photoLabel = `photo${uploadState.fileList.length > 1 ? 's' : ''}`;
     _put('/photos', payload)
       .then(() => {
+        updateUploadStateObject({
+          uploading: false,
+        });
         Modal.success({
           title: 'Success',
           content: `${capitalize(photoLabel)} uploaded successfully!`,
@@ -114,19 +120,21 @@ const ImageUploadModal = ({ visible, handleAfterSave, handleCancel }) => {
       maskClosable={false}
       className="upload-modal"
     >
-      <div>
-        <Row>
-          <Col span={24} className="h-100">
-            <UploadSection
-              fileList={uploadState.fileList}
-              updateFileList={updateFileList}
-            />
-            {isEmpty(uploadState.fileList) && (
-              <div className="file-list-empty">No files selected...</div>
-            )}
-          </Col>
-        </Row>
-      </div>
+      <Spin spinning={uploadState.uploading}>
+        <div>
+          <Row>
+            <Col span={24} className="h-100">
+              <UploadSection
+                fileList={uploadState.fileList}
+                updateFileList={updateFileList}
+              />
+              {isEmpty(uploadState.fileList) && (
+                <div className="file-list-empty">No files selected...</div>
+              )}
+            </Col>
+          </Row>
+        </div>
+      </Spin>
     </Modal>
   );
 };

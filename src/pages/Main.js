@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Modal, Spin } from 'antd';
+import { Modal, Spin, Button } from 'antd';
 import get from 'lodash/get';
 import Header from '../components/Header';
 import ImageUploadModal from '../components/ImageUploadModal';
@@ -134,8 +134,11 @@ const Main = () => {
           />
 
           {photosState.loadMore && !photosState.loading && (
-            <div className="load-more-btn" onClick={loadMorePhotos}>
-              Load More
+            <div className="load-more-btn">
+              <Button type="text" onClick={loadMorePhotos}>
+                {' '}
+                Load More{' '}
+              </Button>
             </div>
           )}
         </div>

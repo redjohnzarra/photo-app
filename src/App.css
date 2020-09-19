@@ -44,7 +44,7 @@
 
 .divider-thick {
   margin-left: 20px;
-  margin-right: 20px;
+  margin-right: 17px;
   font-size: 18px;
   font-weight: 600;
 }
@@ -79,10 +79,14 @@
 }
 
 .page-select {
-  width: 60px;
+  width: 70px;
 }
 
-.album-select {
+.page-select .ant-select-selection-item {
+  text-align: right;
+}
+
+.album-select, .page-select {
   width: 'auto';
 }
 
