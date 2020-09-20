@@ -6,15 +6,15 @@ To get started, please clone the backend api for this first:
 
 Then go to the cloned directory and run:
 
-### `npm i`
+`npm i`
 Then
-### `npm start`
+`npm start`
 
 Once the backend project is up and running, you may run this project by running
 
-### `npm i`
+`npm i`
 Then
-### `npm start`
+`npm start`
 
 
 
