@@ -2,6 +2,7 @@ import { Col, Modal, Row, Select, Spin } from 'antd';
 import capitalize from 'lodash/capitalize';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import forEach from 'lodash/forEach';
 import React, { useState } from 'react';
 import { albumNamesHardCoded, modalAlertStyle } from '../constants/appConfig';
 import { _put } from '../utils/restClient';
@@ -45,7 +46,7 @@ const ImageUploadModal = ({ visible, handleAfterSave, handleCancel }) => {
     if (uploadState.selectedAlbum) {
       const formData = new FormData();
       formData.append('album', uploadState.selectedAlbum);
-      uploadState.fileList.forEach((file) => {
+      forEach(uploadState.fileList, (file) => {
         formData.append('documents', file);
       });
 

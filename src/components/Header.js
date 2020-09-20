@@ -1,5 +1,7 @@
-import { Col, Row, Select, Typography } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons';
+import { Button, Col, Row, Select, Typography } from 'antd';
 import map from 'lodash/map';
+import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import { pageSizes } from '../constants/appConfig';
 import UploadButton from './UploadButton';
@@ -11,6 +13,8 @@ const Header = ({
   selectedPageSize,
   handlePageSizeChange,
   handleOnUploadClick,
+  selectedToDeleteItems,
+  confirmDeletePhotos,
 }) => {
   const populatePageOptions = () =>
     map(pageSizes, (size) => (
@@ -19,6 +23,7 @@ const Header = ({
       </Option>
     ));
 
+  const photosLabel = selectedToDeleteItems.length > 1 ? 'photos' : 'photo';
   return (
     <Row type="flex" justify="space-between" align="middle">
       <Col>
@@ -26,6 +31,17 @@ const Header = ({
       </Col>
       <Col>
         <Row type="flex" align="middle">
+          {!isEmpty(selectedToDeleteItems) && (
+            <>
+              <Col>
+                <Button icon={<DeleteOutlined />} onClick={confirmDeletePhotos}>
+                  Delete {selectedToDeleteItems.length} {photosLabel}
+                </Button>
+              </Col>
+              <div className="divider-thick-fixed">|</div>
+            </>
+          )}
+
           <Col>
             <UploadButton onClick={handleOnUploadClick} />
           </Col>

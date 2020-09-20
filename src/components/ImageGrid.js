@@ -1,11 +1,17 @@
-import React from 'react';
 import { Row } from 'antd';
-import map from 'lodash/map';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import React from 'react';
 import ImageItem from './ImageItem';
 
-const ImageGrid = ({ imageList, handleOnUploadClick, loading }) => {
+const ImageGrid = ({
+  imageList,
+  handleOnUploadClick,
+  loading,
+  handleOnImageSelect,
+  selectedToDeleteItems,
+}) => {
   const populateImageGrid = () => {
     if (isEmpty(imageList)) {
       return (
@@ -23,7 +29,12 @@ const ImageGrid = ({ imageList, handleOnUploadClick, loading }) => {
       );
     } else {
       return map(imageList, (image, idx) => (
-        <ImageItem key={get(image, 'id', idx)} image={image} />
+        <ImageItem
+          key={get(image, 'id', idx)}
+          image={image}
+          onImageSelect={handleOnImageSelect}
+          selectedToDeleteItems={selectedToDeleteItems}
+        />
       ));
     }
   };

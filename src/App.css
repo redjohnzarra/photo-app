@@ -42,11 +42,15 @@
   margin-right: 10px;
 }
 
-.divider-thick {
+.divider-thick, .divider-thick-fixed {
   margin-left: 20px;
   margin-right: 17px;
   font-size: 18px;
   font-weight: 600;
+}
+
+.divider-thick-fixed {
+  margin-right: 5px;
 }
 
 .image-item-container {
@@ -150,4 +154,22 @@
   overflow-y: auto;
   margin-right: -30px;
   padding-right: 30px;
+}
+
+.delete-checkmark {
+  position: absolute;
+  left: 10px;
+  top: 4px;
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-not-selected {
+  background-color: rgba(255,255,255,0.6);
+  background-blend-mode: overlay;
 }
