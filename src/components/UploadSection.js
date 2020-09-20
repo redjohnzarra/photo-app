@@ -1,11 +1,14 @@
-import React from 'react';
+/**
+ * File responsible for populating the upload section (click to select or drag photos).
+ */
+
 import { Upload } from 'antd';
+import React from 'react';
 
 const { Dragger } = Upload;
 
 const UploadSection = ({ fileList, updateFileList }) => {
   const uploadProps = {
-    // name: 'file',
     accept: '.png,.jpeg,.gif',
     multiple: true,
     onRemove: (file) => {

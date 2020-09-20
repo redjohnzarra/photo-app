@@ -1,11 +1,15 @@
+/**
+ * File that populates the header section of the app.
+ */
+
 import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Col, Row, Select, Typography } from 'antd';
-import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
 import React, { useContext } from 'react';
 import { pageSizes } from '../constants/appConfig';
-import UploadButton from './UploadButton';
 import DeletePhotosContext from '../context/DeletePhotosContext';
+import UploadButton from './UploadButton';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -17,6 +21,9 @@ const Header = ({
   confirmDeletePhotos,
 }) => {
   const { imagesToDelete } = useContext(DeletePhotosContext);
+  /**
+   * Function that populates the options for the page size selection.
+   */
   const populatePageOptions = () =>
     map(pageSizes, (size) => (
       <Option key={size} value={size}>

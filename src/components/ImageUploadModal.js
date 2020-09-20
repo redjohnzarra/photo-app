@@ -1,8 +1,12 @@
+/**
+ * File responsible for populating the image upload modal.
+ */
+
 import { Col, Modal, Row, Select, Spin } from 'antd';
 import capitalize from 'lodash/capitalize';
+import forEach from 'lodash/forEach';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
-import forEach from 'lodash/forEach';
 import React, { useState } from 'react';
 import { albumNamesHardCoded, modalAlertStyle } from '../constants/appConfig';
 import { _put } from '../utils/restClient';
@@ -18,6 +22,10 @@ const ImageUploadModal = ({ visible, handleAfterSave, handleCancel }) => {
     selectedAlbum: null,
   });
 
+  /**
+   * Common function for updating the upload state object.
+   * @param uploadStateObject
+   */
   const updateUploadStateObject = (uploadStateObject) => {
     setUploadState({
       ...uploadState,
@@ -25,6 +33,9 @@ const ImageUploadModal = ({ visible, handleAfterSave, handleCancel }) => {
     });
   };
 
+  /**
+   * Function that populates the album options based on the hardcoded value in appConfig constant file.
+   */
   const populateAlbumOptions = () =>
     map(albumNamesHardCoded, (album) => (
       <Option key={album} value={album}>
@@ -32,16 +43,28 @@ const ImageUploadModal = ({ visible, handleAfterSave, handleCancel }) => {
       </Option>
     ));
 
+  /**
+   * Function called when selecting an album.
+   * @param selectedAlbum
+   */
   const handleSelectAlbum = (selectedAlbum) => {
     updateUploadStateObject({ selectedAlbum });
   };
 
+  /**
+   * Function that updates the file list during upload action.
+   * @param fileList
+   */
   const updateFileList = (fileList) => {
     updateUploadStateObject({
       fileList,
     });
   };
 
+  /**
+   * Function called when clicking on the upload button on the modal.
+   * Pops up an error message if no album is selected.
+   */
   const onUploadClick = () => {
     if (uploadState.selectedAlbum) {
       const formData = new FormData();
@@ -60,6 +83,10 @@ const ImageUploadModal = ({ visible, handleAfterSave, handleCancel }) => {
     }
   };
 
+  /**
+   * Function for uploading the photos to the API.
+   * @param payload
+   */
   const uploadPhotos = (payload) => {
     updateUploadStateObject({
       uploading: true,
@@ -86,6 +113,9 @@ const ImageUploadModal = ({ visible, handleAfterSave, handleCancel }) => {
       });
   };
 
+  /**
+   * Function for populating the footer section of upload modal where album select component is and the upload button.
+   */
   const populateUploadModalFooter = () => (
     <Col span={24}>
       <Row type="flex" justify="space-between">

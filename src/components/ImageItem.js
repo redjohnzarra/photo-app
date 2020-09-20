@@ -1,3 +1,7 @@
+/**
+ * File responsible for populating each image section with labels.
+ */
+
 import { CheckOutlined } from '@ant-design/icons';
 import { Col } from 'antd';
 import findIndex from 'lodash/findIndex';
@@ -10,6 +14,10 @@ const ImageItem = ({ image }) => {
   const { imagesToDelete, handleOnImageSelect } = useContext(
     DeletePhotosContext
   );
+
+  /**
+   * Function called when clicking on the image, thus triggering the delete action.
+   */
   const handleOnImageClick = () => {
     handleOnImageSelect(image);
   };

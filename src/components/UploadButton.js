@@ -1,3 +1,7 @@
+/**
+ * Common file component for populating the upload button found in header.
+ */
+
 import { UploadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import React from 'react';

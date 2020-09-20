@@ -1,3 +1,7 @@
+/**
+ * App container file. Contains the provider and the component indicator to be used by React.
+ */
+
 import findIndex from 'lodash/findIndex';
 import get from 'lodash/get';
 import React, { useState } from 'react';
@@ -8,6 +12,11 @@ import Main from './pages/Main';
 function App() {
   const [imagesToDelete, setImagesToDelete] = useState([]);
 
+  /**
+   * Function called when an image is clicked.
+   * Updates the images to delete list.
+   * @param image
+   */
   const handleOnImageSelect = (image) => {
     const newSelectedImages = [...imagesToDelete];
     const selectedImageIdx = findIndex(newSelectedImages, [

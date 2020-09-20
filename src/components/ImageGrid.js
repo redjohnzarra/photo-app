@@ -1,3 +1,7 @@
+/**
+ * File responsible for populating the image grid.
+ */
+
 import { Row } from 'antd';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
@@ -6,6 +10,9 @@ import React from 'react';
 import ImageItem from './ImageItem';
 
 const ImageGrid = ({ imageList, handleOnUploadClick, loading }) => {
+  /**
+   * Function that populates the image grid if image list from the api is not empty or displays a message if the list is emopty.
+   */
   const populateImageGrid = () => {
     if (isEmpty(imageList)) {
       return (
