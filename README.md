@@ -12,12 +12,16 @@ Then
 
 Once the backend project is up and running, you may run this project by running
 
-## `npm i`
+### `npm i`
 Then
 ### `npm start`
 
 ## Few things to note
 
 You may update the backend API's base url in `src/constants/appConfig.js`.
+
 You may also change the page size options & album options (the ones in there are the only ones supported by the backend api).
+
 You may also update the modal error and success popups distance from the top (in respect to the default offset) to your liking.
+
+You may also update the local storage indicator used for checking if delete instructions should be shown or not.
