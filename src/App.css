@@ -1,6 +1,6 @@
 @import '~antd/dist/antd.css';
 .App {
-  padding: 10px 30px;
+  padding: 10px 50px;
 }
 
 .App-logo {
@@ -152,8 +152,8 @@
 
 .image-list-container {
   overflow-y: auto;
-  margin-right: -30px;
-  padding-right: 30px;
+  margin-right: -50px;
+  padding-right: 50px;
 }
 
 .delete-checkmark {
@@ -170,6 +170,6 @@
 }
 
 .image-not-selected {
-  background-color: rgba(255,255,255,0.7);
+  background-color: rgba(255,255,255,0.6);
   background-blend-mode: overlay;
 }
