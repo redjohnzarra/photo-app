@@ -10,7 +10,7 @@ Then go to the cloned directory and run:
 then
 `npm start`
 
-Once the backend project is up and running, you may run this project by running
+Once the backend project is up and running, you may run this project by running:
 
 `npm i`
 then
