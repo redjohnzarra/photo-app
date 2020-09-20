@@ -77,8 +77,14 @@ const Main = () => {
     pageSizeParam = photosState.pageSize,
     currentPageParam = photosState.currentPage
   ) => {
-    const usedPageSize = reset ? get(pageSizes, 2) : pageSizeParam;
-    const usedCurrentPage = reset ? 0 : currentPageParam;
+    const usedPageSize =
+      reset && pageSizeParam === photosState.pageSize
+        ? get(pageSizes, 2)
+        : pageSizeParam;
+    const usedCurrentPage =
+      reset && currentPageParam === photosState.currentPage
+        ? 0
+        : currentPageParam;
     updatePhotosStateObject({
       loading: true,
     });

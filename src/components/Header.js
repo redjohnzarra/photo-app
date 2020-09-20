@@ -33,7 +33,12 @@ const Header = ({
 
   const photosLabel = imagesToDelete.length > 1 ? 'photos' : 'photo';
   return (
-    <Row type="flex" justify="space-between" align="middle">
+    <Row
+      className="header-container"
+      type="flex"
+      justify="space-between"
+      align="middle"
+    >
       <Col>
         <Title level={2}>Photos</Title>
       </Col>

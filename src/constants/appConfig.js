@@ -16,3 +16,5 @@ export const modalAlertStyle = {
 
 export const hideDeleteInstructionsIndicator =
   'PHOTO-APP---dontShowDeleteInstructions';
+
+export const mdMaxIndicator = 991;

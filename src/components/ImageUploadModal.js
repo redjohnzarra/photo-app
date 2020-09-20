@@ -100,7 +100,14 @@ const ImageUploadModal = ({ visible, handleAfterSave, handleCancel }) => {
         Modal.success({
           title: 'Success',
           content: `${capitalize(photoLabel)} uploaded successfully!`,
-          onOk: handleAfterSave,
+          onOk: () => {
+            handleAfterSave();
+
+            updateUploadStateObject({
+              fileList: [],
+              selectedAlbum: null,
+            });
+          },
           style: modalAlertStyle,
         });
       })
@@ -150,6 +157,7 @@ const ImageUploadModal = ({ visible, handleAfterSave, handleCancel }) => {
       footer={populateUploadModalFooter()}
       maskClosable={false}
       className="upload-modal"
+      destroyOnClose
     >
       <Spin spinning={uploadState.uploading}>
         <div>
