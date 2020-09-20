@@ -16,6 +16,8 @@ Once the backend project is up and running, you may run this project by running
 Then
 ### `npm start`
 
+
+
 ## Few things to note
 
 You may update the backend API's base url in `src/constants/appConfig.js`.
