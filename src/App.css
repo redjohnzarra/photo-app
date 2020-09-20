@@ -200,3 +200,9 @@
     margin-bottom: 10px;
   }
 }
+
+@media screen and (max-width: 576px) {
+  .image-item {
+    background-size: cover;
+  }
+}
