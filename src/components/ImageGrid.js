@@ -5,13 +5,7 @@ import map from 'lodash/map';
 import React from 'react';
 import ImageItem from './ImageItem';
 
-const ImageGrid = ({
-  imageList,
-  handleOnUploadClick,
-  loading,
-  handleOnImageSelect,
-  selectedToDeleteItems,
-}) => {
+const ImageGrid = ({ imageList, handleOnUploadClick, loading }) => {
   const populateImageGrid = () => {
     if (isEmpty(imageList)) {
       return (
@@ -29,12 +23,7 @@ const ImageGrid = ({
       );
     } else {
       return map(imageList, (image, idx) => (
-        <ImageItem
-          key={get(image, 'id', idx)}
-          image={image}
-          onImageSelect={handleOnImageSelect}
-          selectedToDeleteItems={selectedToDeleteItems}
-        />
+        <ImageItem key={get(image, 'id', idx)} image={image} />
       ));
     }
   };

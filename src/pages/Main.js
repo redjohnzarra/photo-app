@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Modal, Spin, Button } from 'antd';
-import get from 'lodash/get';
-import forEach from 'lodash/forEach';
+import { Button, Modal, Spin } from 'antd';
 import findIndex from 'lodash/findIndex';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Header from '../components/Header';
-import ImageUploadModal from '../components/ImageUploadModal';
 import ImageGrid from '../components/ImageGrid';
+import ImageUploadModal from '../components/ImageUploadModal';
 import { pageSizes } from '../constants/appConfig';
-
-import { _get, _post, _delete } from '../utils/restClient';
+import DeletePhotosContext from '../context/DeletePhotosContext';
+import { _delete, _get, _post } from '../utils/restClient';
 
 const Main = () => {
   let imageListRef = useRef(null);
   const [showUploadModal, setShowUploadModal] = useState(false);
-  const [imagesToDelete, setImagesToDelete] = useState([]);
+  const { imagesToDelete, setImagesToDelete } = useContext(DeletePhotosContext);
 
   const [photosState, setPhotosState] = useState({
     list: [],
@@ -124,22 +124,6 @@ const Main = () => {
     getListOfPhotos(false, photosState.pageSize, usedPageCounter);
   };
 
-  const handleOnImageSelect = (image) => {
-    const newSelectedImages = [...imagesToDelete];
-    const selectedImageIdx = findIndex(newSelectedImages, [
-      'id',
-      get(image, 'id'),
-    ]);
-
-    if (selectedImageIdx === -1) {
-      newSelectedImages.push(image);
-    } else {
-      newSelectedImages.splice(selectedImageIdx, 1);
-    }
-
-    setImagesToDelete(newSelectedImages);
-  };
-
   const confirmDeletePhotos = () => {
     let photosLabel = 'photo';
     let demonstrative = 'this';
@@ -209,7 +193,6 @@ const Main = () => {
         selectedPageSize={photosState.pageSize}
         handlePageSizeChange={handlePageSizeChange}
         handleOnUploadClick={handleOnUploadClick}
-        selectedToDeleteItems={imagesToDelete}
         confirmDeletePhotos={confirmDeletePhotos}
       />
       <Spin spinning={photosState.loading}>
@@ -222,8 +205,6 @@ const Main = () => {
             imageList={photosState.list}
             handleOnUploadClick={handleOnUploadClick}
             loading={photosState.loading}
-            handleOnImageSelect={handleOnImageSelect}
-            selectedToDeleteItems={imagesToDelete}
           />
 
           {photosState.loadMore && !photosState.loading && (

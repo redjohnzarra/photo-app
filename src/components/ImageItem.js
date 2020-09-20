@@ -1,19 +1,23 @@
-import React from 'react';
 import { CheckOutlined } from '@ant-design/icons';
+import { Col } from 'antd';
+import findIndex from 'lodash/findIndex';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
-import findIndex from 'lodash/findIndex';
-import { Col } from 'antd';
+import React, { useContext } from 'react';
+import DeletePhotosContext from '../context/DeletePhotosContext';
 
-const ImageItem = ({ image, onImageSelect, selectedToDeleteItems }) => {
+const ImageItem = ({ image }) => {
+  const { imagesToDelete, handleOnImageSelect } = useContext(
+    DeletePhotosContext
+  );
   const handleOnImageClick = () => {
-    onImageSelect(image);
+    handleOnImageSelect(image);
   };
 
   let itemClass = '';
-  if (!isEmpty(selectedToDeleteItems)) {
+  if (!isEmpty(imagesToDelete)) {
     itemClass =
-      findIndex(selectedToDeleteItems, ['id', get(image, 'id')]) === -1
+      findIndex(imagesToDelete, ['id', get(image, 'id')]) === -1
         ? 'image-not-selected'
         : 'image-selected';
   }

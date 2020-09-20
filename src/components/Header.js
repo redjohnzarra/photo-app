@@ -2,9 +2,10 @@ import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Col, Row, Select, Typography } from 'antd';
 import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty';
-import React from 'react';
+import React, { useContext } from 'react';
 import { pageSizes } from '../constants/appConfig';
 import UploadButton from './UploadButton';
+import DeletePhotosContext from '../context/DeletePhotosContext';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -13,9 +14,9 @@ const Header = ({
   selectedPageSize,
   handlePageSizeChange,
   handleOnUploadClick,
-  selectedToDeleteItems,
   confirmDeletePhotos,
 }) => {
+  const { imagesToDelete } = useContext(DeletePhotosContext);
   const populatePageOptions = () =>
     map(pageSizes, (size) => (
       <Option key={size} value={size}>
@@ -23,7 +24,7 @@ const Header = ({
       </Option>
     ));
 
-  const photosLabel = selectedToDeleteItems.length > 1 ? 'photos' : 'photo';
+  const photosLabel = imagesToDelete.length > 1 ? 'photos' : 'photo';
   return (
     <Row type="flex" justify="space-between" align="middle">
       <Col>
@@ -31,11 +32,11 @@ const Header = ({
       </Col>
       <Col>
         <Row type="flex" align="middle">
-          {!isEmpty(selectedToDeleteItems) && (
+          {!isEmpty(imagesToDelete) && (
             <>
               <Col>
                 <Button icon={<DeleteOutlined />} onClick={confirmDeletePhotos}>
-                  Delete {selectedToDeleteItems.length} {photosLabel}
+                  Delete {imagesToDelete.length} {photosLabel}
                 </Button>
               </Col>
               <div className="divider-thick-fixed">|</div>
